@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d0620">
+<title>1 Oktober · for my princess</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg1:#1a0b3a; --bg2:#0d0620; --bg3:#06030f;
+    --lilac:#d9c6ff; --lilac-soft:#b79cf2; --glow:rgba(183,156,242,.65);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%;overflow:hidden;background:var(--bg3);color:var(--lilac);
+    font-family:'Cormorant Garamond',Georgia,serif}
+  body{background:radial-gradient(ellipse at 50% 35%,var(--bg1) 0%,var(--bg2) 55%,var(--bg3) 100%)}
+
+  #sky{position:fixed;inset:0;width:100%;height:100%;display:block}
+
+  /* ---------- Teks utama ---------- */
+  .stage{position:fixed;inset:0;display:flex;flex-direction:column;justify-content:space-between;
+    align-items:center;text-align:center;pointer-events:none;
+    padding:calc(env(safe-area-inset-top,0px) + 6vh) 24px calc(env(safe-area-inset-bottom,0px) + 5vh)}
+  .top,.bottom{max-width:520px;width:100%}
+  .fade{opacity:0;transform:translateY(10px);transition:opacity 2s ease,transform 2s ease}
+  .fade.show{opacity:1;transform:none}
+
+  .hello{font-family:'Great Vibes',cursive;font-size:clamp(2rem,9vw,3rem);line-height:1.1;
+    text-shadow:0 0 18px var(--glow),0 0 42px rgba(183,156,242,.35)}
+  .name{font-family:'Great Vibes',cursive;font-size:clamp(2.4rem,12vw,4.2rem);line-height:1.15;margin-top:.1em;
+    color:#efe5ff;text-shadow:0 0 22px var(--glow),0 0 60px rgba(183,156,242,.45)}
+  .date{margin-top:.6em;font-size:1.05rem;letter-spacing:.32em;color:var(--lilac-soft);font-style:italic}
+
+  .msg{font-size:clamp(1.05rem,4.6vw,1.35rem);line-height:1.6;font-style:italic;font-weight:400;
+    text-shadow:0 0 14px rgba(183,156,242,.5)}
+  .msg p+p{margin-top:.7em}
+  .sign{margin-top:1em;font-family:'Great Vibes',cursive;font-size:1.9rem;color:#efe5ff;
+    text-shadow:0 0 16px var(--glow)}
+
+  /* ---------- Layar pembuka ---------- */
+  #intro{position:fixed;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;
+    padding:24px;text-align:center;cursor:pointer;
+    background:radial-gradient(ellipse at 50% 40%,#2a1259 0%,#12082b 60%,#06030f 100%);
+    transition:opacity 1.4s ease,visibility 1.4s}
+  #intro.hide{opacity:0;visibility:hidden;pointer-events:none}
+  #intro button{all:unset;cursor:pointer;max-width:320px;padding:22px 28px;border-radius:999px;
+    border:1px solid rgba(217,198,255,.45);background:rgba(183,156,242,.08);
+    font-family:'Great Vibes',cursive;font-size:clamp(1.7rem,7vw,2.2rem);line-height:1.25;color:#efe5ff;
+    text-shadow:0 0 16px var(--glow);animation:pulse 2.8s ease-in-out infinite}
+  #intro button:focus-visible{outline:2px solid var(--lilac);outline-offset:4px}
+  @keyframes pulse{
+    0%,100%{box-shadow:0 0 18px rgba(183,156,242,.25),inset 0 0 18px rgba(183,156,242,.08)}
+    50%{box-shadow:0 0 44px rgba(183,156,242,.6),inset 0 0 26px rgba(183,156,242,.18)}}
+
+  #yt{position:fixed;width:1px;height:1px;opacity:0;pointer-events:none;left:-10px;top:-10px}
+
+  @media (prefers-reduced-motion:reduce){
+    .fade{transition-duration:.01s}
+    #intro button{animation:none}
+  }
+</style>
+</head>
+<body>
+
+<canvas id="sky" aria-hidden="true"></canvas>
+
+<main class="stage">
+  <header class="top">
+    <div class="hello fade" id="t1">my princess</div>
+    <div class="name fade" id="t2">Veronica aurellya</div>
+    <div class="date fade" id="t3">1 . 10</div>
+  </header>
+
+  <section class="bottom fade" id="t4">
+    <div class="msg">
+      <p>Di antara jutaan bintang, aku selalu menemukanmu.</p>
+      <p>Terima kasih sudah jadi cahaya paling hangat di langitku dan terima kasih sudah jadi alasanku tersenyum setiap hari.<br>Selamat 1 Oktober, semoga hari-harimu selembut malam ini.</p>
+    </div>
+    <div class="sign">i love you more than anything you can imagine</div>
+  </section>
+</main>
+
+<!-- ============ LAYAR PEMBUKA ============ -->
+<div id="intro" role="button" tabindex="0">
+  <button type="button">Tap to open the magic, my princess</button>
+</div>
+
+<!--
+  ==========================================================
+  MUSIK "girl in red"  ->  PILIH SALAH SATU CARA DI BAWAH
+  ==========================================================
+
+  CARA 1 (paling disarankan): file MP3
+  Isi atribut src di <source> di bawah ini dengan link .mp3 langsung,
+  contoh:  src="https://situsmu.com/girl-in-red.mp3"
+  atau simpan mp3 di folder yang sama dengan file ini, lalu tulis:
+  src="girl-in-red.mp3"
+
+  CARA 2: link YouTube
+  Tag <audio> tidak bisa memutar link YouTube. Jika ingin YouTube,
+  isi variabel YOUTUBE_ID di bagian <script> (lihat komentar di sana).
+-->
+<audio id="bgm" loop preload="auto" playsinline>
+  <source src="123.mp3" type="audio/mpeg"> <!-- TEMPEL LINK MP3 DI SINI (di dalam tanda kutip src) -->
+</audio>
+<div id="yt"></div>
+
+<script>
+/* ==========================================================
+   PENGATURAN
+   ========================================================== */
+// CARA 2 (opsional): tempel ID video YouTube saja (bukan link penuh).
+// Contoh: link https://www.youtube.com/watch?v=AbCdEfGhIjK  ->  'AbCdEfGhIjK'
+// Biarkan kosong '' jika memakai MP3 di atas.
+const YOUTUBE_ID = '';
+
+/* ==========================================================
+   ELEMEN & UTILITAS
+   ========================================================== */
+const $ = id => document.getElementById(id);
+const cv = $('sky'), ctx = cv.getContext('2d');
+const intro = $('intro'), bgm = $('bgm');
+let W = 0, H = 0, dpr = 1;
+const lerp = (a, b, t) => a + (a === b ? 0 : (b - a) * t);
+
+/* ==========================================================
+   SPRITE BINTANG (digambar sekali, dipakai berulang -> hemat baterai)
+   ========================================================== */
+const sprite = document.createElement('canvas');
+sprite.width = sprite.height = 64;
+(function () {
+  const g = sprite.getContext('2d');
+  const grd = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+  grd.addColorStop(0, 'rgba(255,250,255,1)');
+  grd.addColorStop(.18, 'rgba(226,208,255,.95)');
+  grd.addColorStop(.45, 'rgba(183,156,242,.35)');
+  grd.addColorStop(1, 'rgba(183,156,242,0)');
+  g.fillStyle = grd; g.fillRect(0, 0, 64, 64);
+})();
+
+/* ==========================================================
+   PARTIKEL & BENTUK HATI
+   ========================================================== */
+let P = [], unit = 10, cx = 0, cy = 0;
+let mode = 'idle';            // idle -> float -> gather
+let running = false, tStart = 0, tGather = 0, last = 0;
+const GATHER_AFTER = 7000;    // ms bintang melayang bebas sebelum berkumpul
+let floatLink = 100, heartLink = 30, link = 100;
+
+function heartPoint(t) {      // rumus hati klasik
+  return [
+    16 * Math.pow(Math.sin(t), 3),
+    13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t)
+  ];
+}
+
+function buildTargets(n) {
+  const outer = Math.round(n * .62), inner = n - outer, pts = [];
+  for (let i = 0; i < outer; i++) pts.push(heartPoint(i / outer * Math.PI * 2));
+  for (let i = 0; i < inner; i++) {
+    const p = heartPoint(i / inner * Math.PI * 2 + .3);
+    pts.push([p[0] * .55, p[1] * .55 - 1]);
+  }
+  for (let i = pts.length - 1; i > 0; i--) {            // acak supaya arah gerak beragam
+    const j = (Math.random() * (i + 1)) | 0;
+    [pts[i], pts[j]] = [pts[j], pts[i]];
+  }
+  return pts;
+}
+
+function init() {
+  const n = W < 600 ? 85 : 130;                          // jumlah dijaga kecil agar HP tidak lag
+  const T = buildTargets(n);
+  P = T.map(t => ({
+    x: Math.random() * W, y: Math.random() * H,
+    vx: (Math.random() - .5) * 26, vy: (Math.random() - .5) * 26,
+    hx: t[0], hy: t[1],
+    r: 5 + Math.random() * 6,
+    ph: Math.random() * 6.28,
+    delay: Math.random() * 1800
+  }));
+}
+
+function resize() {
+  dpr = Math.min(window.devicePixelRatio || 1, 2);
+  W = window.innerWidth; H = window.innerHeight;
+  cv.width = W * dpr; cv.height = H * dpr;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  unit = Math.min(W * .8 / 34, H * .3 / 30);            // ukuran hati menyesuaikan layar
+  cx = W / 2; cy = H * .47;
+  floatLink = Math.max(75, Math.min(130, Math.min(W, H) * .2));
+  heartLink = unit * 2.7;
+  if (!P.length) init();
+}
+
+/* ==========================================================
+   ANIMASI
+   ========================================================== */
+function frame(now) {
+  if (!running) return;
+  requestAnimationFrame(frame);
+  const dt = Math.min((now - last) / 1000, .05); last = now;
+  const el = now - tStart;
+
+  if (mode === 'float' && el > GATHER_AFTER) { mode = 'gather'; tGather = now; }
+
+  // jarak sambungan garis: pelan-pelan mengecil menuju pola hati
+  const gEl = mode === 'gather' ? now - tGather : 0;
+  const prog = Math.min(gEl / 6000, 1);
+  link = lerp(floatLink, heartLink, prog * prog);
+
+  const pulse = 1 + (prog >= 1 ? .025 * Math.sin(now / 420) : 0);   // detak jantung halus
+
+  ctx.clearRect(0, 0, W, H);
+
+  for (const p of P) {
+    if (mode === 'gather' && gEl > p.delay) {
+      const tx = cx + p.hx * unit * pulse;
+      const ty = cy - (p.hy + 2.5) * unit * pulse;
+      const k = 1 - Math.exp(-dt * 2.4);
+      p.x += (tx - p.x) * k; p.y += (ty - p.y) * k;
+    } else {
+      p.x += p.vx * dt; p.y += p.vy * dt;
+      if (p.x < -10) p.x = W + 10; else if (p.x > W + 10) p.x = -10;
+      if (p.y < -10) p.y = H + 10; else if (p.y > H + 10) p.y = -10;
+    }
+  }
+
+  // garis penghubung (rasi bintang)
+  ctx.lineWidth = 1;
+  const L2 = link * link;
+  for (let i = 0; i < P.length; i++) {
+    const a = P[i];
+    for (let j = i + 1; j < P.length; j++) {
+      const b = P[j], dx = a.x - b.x, dy = a.y - b.y, d2 = dx * dx + dy * dy;
+      if (d2 < L2) {
+        ctx.strokeStyle = 'rgba(200,175,255,' + ((1 - Math.sqrt(d2) / link) * .55).toFixed(3) + ')';
+        ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+      }
+    }
+  }
+
+  // bintang bercahaya
+  for (const p of P) {
+    const tw = .65 + .35 * Math.sin(now / 600 + p.ph);
+    const s = p.r * (.8 + .4 * tw) * 2;
+    ctx.globalAlpha = .55 + .45 * tw;
+    ctx.drawImage(sprite, p.x - s / 2, p.y - s / 2, s, s);
+  }
+  ctx.globalAlpha = 1;
+}
+
+function start() {
+  if (running) return;
+  mode = 'float'; running = true;
+  tStart = last = performance.now();
+  requestAnimationFrame(frame);
+}
+
+/* Hemat baterai: jeda saat tab tidak aktif */
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) { running = false; }
+  else if (mode !== 'idle' && !running) {
+    const shift = performance.now() - last;
+    tStart += shift; tGather += shift;
+    running = true; last = performance.now(); requestAnimationFrame(frame);
+  }
+});
+
+/* ==========================================================
+   MUSIK
+   ========================================================== */
+let ytPlayer = null;
+function setupYouTube() {
+  if (!YOUTUBE_ID) return;
+  const s = document.createElement('script');
+  s.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(s);
+  window.onYouTubeIframeAPIReady = () => {
+    ytPlayer = new YT.Player('yt', {
+      videoId: YOUTUBE_ID,
+      playerVars: { autoplay: 0, loop: 1, playlist: YOUTUBE_ID, playsinline: 1 },
+      events: { onReady: e => { if (opened) e.target.playVideo(); } }
+    });
+  };
+}
+
+function playMusic() {
+  if (YOUTUBE_ID) { if (ytPlayer && ytPlayer.playVideo) ytPlayer.playVideo(); return; }
+  const src = bgm.querySelector('source');
+  if (!src || !src.getAttribute('src')) return;          // belum ada link mp3 -> tanpa suara
+  bgm.volume = 0;
+  bgm.play().then(() => {
+    let v = 0;                                            // fade-in lembut
+    const f = setInterval(() => { v = Math.min(v + .04, .85); bgm.volume = v; if (v >= .85) clearInterval(f); }, 120);
+  }).catch(() => {});
+}
+
+/* ==========================================================
+   BUKA KEJUTAN
+   ========================================================== */
+let opened = false;
+function openMagic() {
+  if (opened) return; opened = true;
+  intro.classList.add('hide');                            // layar pertama memudar
+  playMusic();                                            // musik mulai
+  start();                                                // rasi bintang mulai
+  const show = (id, ms) => setTimeout(() => $(id).classList.add('show'), ms);
+  show('t1', 1200); show('t2', 2800); show('t3', 4200);
+  show('t4', GATHER_AFTER + 3500);                        // pesan muncul saat hati terbentuk
+}
+intro.addEventListener('click', openMagic);
+intro.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openMagic(); });
+
+window.addEventListener('resize', resize);
+resize();
+setupYouTube();
+</script>
+</body>
+</html>
